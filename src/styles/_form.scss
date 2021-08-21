@@ -1,0 +1,74 @@
+.form-container {
+  width: 90%;
+  margin: 1.5rem auto 0 auto;
+  padding: 1.5rem 1rem 0 1rem;
+  background-color: #fff;
+  border-radius: 10px 10px;
+  @media (min-width: 1440px) {
+    width: 70%;
+  }
+  h2 {
+    text-align: center;
+    color: #435d7d;
+    margin-bottom: 2rem;
+  }
+  form {
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      label {
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+      .labelerror {
+        color: rgb(228, 60, 60);
+        position: relative;
+        &::after {
+          content: "Can't be empty";
+          position: absolute;
+          right: 0;
+        }
+      }
+      input {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+        outline: none;
+        margin-top: 1rem;
+        height: 3rem;
+        border-radius: 10px;
+        border: 1px solid #435d7d;
+      }
+      .formerror {
+        border: 2px solid rgb(228, 60, 60);
+      }
+    }
+  }
+}
+.buttons {
+  margin: 0 auto 2rem auto;
+  @media (min-width: 1440px) {
+    width: 70%;
+  }
+  button {
+    cursor: pointer;
+    width: 50%;
+    border: none;
+    background-color: rgb(228, 60, 60);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 0.75rem 0;
+    transition: background 0.3s ease;
+    border-radius: 0 0 0 10px;
+    &:hover {
+      background-color: red;
+    }
+    &:last-child {
+      border-radius: 0 0 10px 0;
+      background-color: rgb(11, 211, 11);
+      &:hover {
+        background-color: green;
+      }
+    }
+  }
+}

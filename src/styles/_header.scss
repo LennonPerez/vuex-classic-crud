@@ -1,0 +1,43 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+  padding: 0 5%;
+  background-color: #435d7d;
+  @media (min-width: 1440px) {
+    padding: 0 15%;
+  }
+  h1 {
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 400;
+    span {
+      font-weight: 600;
+    }
+  }
+  button {
+    color: #fff;
+    background: rgb(11, 211, 11);
+    border: none;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-radius: 50%;
+    @media (min-width: 550px) {
+      border-radius: 10px;
+    }
+    &:hover {
+      background-color: green;
+    }
+    span {
+      font-size: 0;
+      @media (min-width: 550px) {
+        font-size: 1rem;
+        margin-left: 1rem;
+      }
+    }
+  }
+}

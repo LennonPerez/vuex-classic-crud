@@ -1,0 +1,107 @@
+main {
+  width: 90%;
+  margin: 1rem auto;
+  @media (min-width: 1440px) {
+    width: 70%;
+  }
+  .list-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    .list-item {
+      display: grid;
+      align-content: center;
+      grid-template-columns: 80% 20%;
+      @media (min-width: 768px) {
+        grid-template-columns: 90% 10%;
+      }
+      @media (min-width: 1360px) {
+        grid-template-columns: 92% 8%;
+      }
+      height: 5rem;
+      border-bottom: 1px solid rgba(67, 93, 125, 0.2);
+      h3 {
+        text-transform: capitalize;
+        font-weight: 600;
+        &:nth-child(2) {
+          display: none;
+          @media (min-width: 768px) {
+            display: block;
+          }
+        }
+        &:nth-child(4) {
+          display: none;
+          @media (min-width: 1360px) {
+            display: block;
+          }
+        }
+        &:last-child {
+          text-align: end;
+          @media (min-width: 1024px) {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .header-list {
+      display: grid;
+      grid-template-columns: 40% 30% 30%;
+      @media (min-width: 550px) {
+        grid-template-columns: repeat(2, 42.5%) 15%;
+      }
+      @media (min-width: 768px) {
+        grid-template-columns: 22.5% 35% 27.5% 15%;
+      }
+      @media (min-width: 1024px) {
+        grid-template-columns: 22.5% 35.5% 30% 12.5%;
+      }
+      @media (min-width: 1360px) {
+        grid-template-columns: 18% 28% 28% 18% 8%;
+      }
+    }
+    .item {
+      cursor: pointer;
+      h3 {
+        font-weight: 400;
+        font-size: 1rem;
+      }
+      .item-info {
+        height: 5rem;
+        display: grid;
+        align-content: center;
+        grid-template-columns: repeat(2, 50%);
+        @media (min-width: 768px) {
+          grid-template-columns: 25% 40% 35%;
+        }
+        @media (min-width: 1024px) {
+          grid-template-columns: 25% 40% 35%;
+        }
+        @media (min-width: 1360px) {
+          grid-template-columns: 20% 30% 20% 30%;
+        }
+      }
+      .actions {
+        display: flex;
+        justify-content: space-between;
+        @media (min-width: 550px) {
+          justify-content: space-around;
+        }
+        button {
+          border: none;
+          background: none;
+          cursor: pointer;
+        }
+        .fa-pencil-alt {
+          color: orange;
+          font-size: 1.2rem;
+          pointer-events: none;
+        }
+        .fa-trash {
+          color: red;
+          font-size: 1.2rem;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
