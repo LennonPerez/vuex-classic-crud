@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {mapActions, mapMutations} from "vuex"
+import {mapActions} from "vuex"
 import { defineAsyncComponent } from 'vue';
 export default {
     props : {
@@ -38,10 +38,9 @@ export default {
         Modal : defineAsyncComponent(()=> import("@/components/Modal"))
     },
     methods : {
-        ...mapActions(["deleteEmployee", "getEmployees"]),
-        ...mapMutations(["selectEmployee"]),
+        ...mapActions(["deleteEmployee", "getEmployees", "selectEmployee"]),
         goToDetails(){
-            this.$router.push(`/${this.employee.id}`)
+            this.$router.push(`/details/${this.employee.id}`)
         },
         selectEdit(){
             this.selectEmployee(this.employee.id)

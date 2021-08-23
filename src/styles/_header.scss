@@ -1,10 +1,12 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 5rem;
   padding: 0 5%;
-  background-color: #435d7d;
+  background-color: var(--headerbg);
+  @media (min-width: 768px) {
+    justify-content: space-between;
+  }
   @media (min-width: 1440px) {
     padding: 0 15%;
   }
@@ -13,31 +15,62 @@ header {
     font-size: 1.3rem;
     color: #fff;
     font-weight: 400;
+    margin-right: auto;
     span {
       font-weight: 600;
     }
   }
-  button {
-    color: #fff;
-    background: rgb(11, 211, 11);
-    border: none;
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
+  .theme-container {
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    transition: background 0.3s ease;
-    border-radius: 50%;
-    @media (min-width: 550px) {
-      border-radius: 10px;
-    }
-    &:hover {
-      background-color: green;
+    margin-left: 1rem;
+    p {
+      color: #fff;
+      display: none;
+      @media (min-width: 768px) {
+        display: block;
+        margin-left: 0.5rem;
+      }
     }
     span {
-      font-size: 0;
-      @media (min-width: 550px) {
-        font-size: 1rem;
-        margin-left: 1rem;
+      color: #fff;
+      width: 25px;
+      height: 25px;
+      background-image: var(--theme);
+      background-position: center center;
+      background-size: 100% 100%;
+      @media (min-width: 768px) {
+        width: 15px;
+        height: 15px;
       }
+    }
+  }
+}
+.add-btn {
+  color: #fff;
+  background-color: var(--add-btn);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 50%;
+  margin-left: auto;
+  @media (min-width: 550px) {
+    border-radius: 10px;
+  }
+  @media (min-width: 768px) {
+    display: none;
+  }
+  &:hover {
+    background-color: green;
+  }
+  span {
+    font-size: 0;
+    @media (min-width: 550px) {
+      font-size: 1rem;
+      margin-left: 1rem;
     }
   }
 }

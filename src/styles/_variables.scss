@@ -1,0 +1,30 @@
+:root {
+  --white: #fff;
+  --almostwhite: #fbfbfb;
+  --darkblue: #435d7d;
+  --darkerblue: #25303c;
+  --almostblack: #151617;
+  --black: #000;
+  --darkgray: #1c1e21;
+  --moon: url(../assets/icon-moon.svg);
+  --sun: url(../assets/icon-sun.svg);
+  --darkgreen: #2b7b2b;
+  --lightgreen: rgb(11, 211, 11);
+}
+
+.light {
+  --main-text: var(--black);
+  --headerbg: var(--darkblue);
+  --bg: var(--almostwhite);
+  --elbg: var(--white);
+  --theme: var(--sun);
+  --add-btn: var(--lightgreen);
+}
+.dark {
+  --main-text: var(--white);
+  --headerbg: var(--darkerblue);
+  --bg: var(--almostblack);
+  --elbg: var(--darkgray);
+  --theme: var(--moon);
+  --add-btn: var(--darkgreen);
+}

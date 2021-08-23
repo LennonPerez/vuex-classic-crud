@@ -3,17 +3,17 @@ import AxiosClient from "@/api/Axios";
 
 export default createStore({
   state: {
-    employees: null,
+    employees: [],
     selected: null,
     form: false,
   },
   mutations: {
     getEmployees(state, employees) {
-      state.employees = employees;
+      state.employees = employees.reverse();
       state.selected = null;
     },
-    selectEmployee(state, id) {
-      state.selected = state.employees.find((e) => e.id === id);
+    selectEmployee(state, employee) {
+      state.selected = employee;
     },
     openForm(state, bool) {
       state.form = bool;
@@ -30,6 +30,11 @@ export default createStore({
         });
       }
       commit("getEmployees", results);
+    },
+    async selectEmployee({ commit }, id) {
+      const { data } = await AxiosClient.get(`/Employees/${id}.json`);
+      data.id = id;
+      commit("selectEmployee", data);
     },
     async setNewEmployee(e, employee) {
       await AxiosClient.post("/Employees.json", employee);

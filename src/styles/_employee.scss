@@ -12,7 +12,7 @@
 .details-container {
   width: 90%;
   margin: 1.5rem auto 0 auto;
-  background-color: #fff;
+  background-color: var(--elbg);
   padding: 1.5rem 1rem 1rem 1rem;
   border-radius: 10px 10px 0 0;
   h2 {
@@ -29,10 +29,12 @@
       margin-bottom: 0;
     }
     h3 {
+      color: #435d7d;
       font-size: 1.3rem;
       font-weight: 600;
     }
     p {
+      color: var(--main-text);
       font-size: 1.2rem;
       margin-top: 0.5rem;
       font-weight: 400;
@@ -57,7 +59,7 @@
     }
     &:first-child {
       border-radius: 0 0 0 10px;
-      background-color: rgb(11, 211, 11);
+      background-color: var(--add-btn);
       &:hover {
         background-color: green;
       }

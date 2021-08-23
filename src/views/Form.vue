@@ -2,7 +2,7 @@
   <div class="form-container">
       <h2 v-if="!selected">Add new employee</h2>
       <h2 v-else>Edit Employee info</h2>
-      <form @submit="sendEmployee">
+      <form @submit.prevent="sendEmployee">
         <div class="input-box">
           <label for="name">Employee's Name</label>
           <input type="text" id="name" v-model="info.name">
@@ -70,13 +70,12 @@ export default {
           }
         }) 
     },
-    async sendEmployee(e){
-      e.preventDefault()
+    async sendEmployee(){
       if(this.info.name && this.info.email && this.info.role && this.info.salary 
       && this.info.esince && this.info.address && this.info.phone){
        await this.selected ? this.updateEmployee(this.info) : this.setNewEmployee(this.info)
-        await this.getEmployees()
         await this.$router.push('/')
+        await this.getEmployees()
       }else{
         this.formError()
       }

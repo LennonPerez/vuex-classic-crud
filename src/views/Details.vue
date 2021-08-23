@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapActions} from "vuex"
+import {mapState, mapActions} from "vuex"
 import { defineAsyncComponent } from '@vue/runtime-core';
 export default {
     props : {
@@ -61,8 +61,7 @@ export default {
         ...mapState(["selected"]),
     },
     methods : {
-        ...mapMutations(["selectEmployee"]),
-        ...mapActions(["deleteEmployee", "getEmployees"]),
+        ...mapActions(["deleteEmployee", "getEmployees", "selectEmployee"]),
         selectEdit(){
             this.$router.push("/form")
         },
