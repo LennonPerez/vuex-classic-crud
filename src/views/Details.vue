@@ -35,6 +35,7 @@
           <button type="button" @click="selectDelete">Delete</button>
     </div>
     </template>
+    <Loading v-else/>
     <Modal v-if="selectdelete" @closeModal="deleteE" />
 </template>
 
@@ -55,7 +56,8 @@ export default {
       }
     },
     components : {
-        Modal : defineAsyncComponent(()=> import("@/components/Modal"))
+        Modal : defineAsyncComponent(()=> import("@/components/Modal")),
+        Loading : defineAsyncComponent(()=>import("@/components/Loading"))
     },
     computed : {
         ...mapState(["selected"]),
