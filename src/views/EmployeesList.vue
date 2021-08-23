@@ -13,8 +13,11 @@
         <h3>phone</h3>
         <h3>actions</h3>
     </div>
-      <Empty v-if="listfiltered.length === 0 && inputname"/>
-      <Employee :employee="employee" v-for="employee in listfiltered" :key="employee.id" v-else/>
+      <Loading v-if="loading" />
+      <template v-else>
+        <Empty v-if="listfiltered.length === 0 && inputname"/>
+        <Employee :employee="employee" v-for="employee in listfiltered" :key="employee.id" v-else/>
+      </template>
     </div>
   </main>
 </template>
@@ -25,7 +28,8 @@ import {mapActions, mapMutations, mapState} from "vuex"
 export default {
   components : {
     Employee : defineAsyncComponent(() => import("@/components/Employee")),
-    Empty : defineAsyncComponent(()=> import("@/components/Empty"))
+    Empty : defineAsyncComponent(()=> import("@/components/Empty")),
+    Loading : defineAsyncComponent(()=> import('@/components/Loading'))
   },
   data(){
     return{
@@ -37,7 +41,7 @@ export default {
     ...mapMutations(["openForm"])
   },
   computed : {
-    ...mapState(["employees"]),
+    ...mapState(["employees", "loading"]),
     listfiltered(){
       if(this.inputname){
         return this.employees.filter(employee => employee.name.toLowerCase().includes(this.inputname.toLowerCase()))

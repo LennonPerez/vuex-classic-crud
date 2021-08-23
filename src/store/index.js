@@ -3,6 +3,7 @@ import AxiosClient from "@/api/Axios";
 
 export default createStore({
   state: {
+    loading: true,
     employees: [],
     selected: null,
     form: false,
@@ -11,6 +12,9 @@ export default createStore({
     getEmployees(state, employees) {
       state.employees = employees.reverse();
       state.selected = null;
+    },
+    updateLoading(state, bool) {
+      state.loading = bool;
     },
     selectEmployee(state, employee) {
       state.selected = employee;
@@ -21,6 +25,7 @@ export default createStore({
   },
   actions: {
     async getEmployees({ commit }) {
+      commit("updateLoading", true);
       const { data } = await AxiosClient.get("/Employees.json");
       const results = [];
       for (let id of Object.keys(data)) {
@@ -30,6 +35,7 @@ export default createStore({
         });
       }
       commit("getEmployees", results);
+      commit("updateLoading", false);
     },
     async selectEmployee({ commit }, id) {
       const { data } = await AxiosClient.get(`/Employees/${id}.json`);
