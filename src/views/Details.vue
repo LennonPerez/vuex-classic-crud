@@ -39,42 +39,41 @@
     <Modal v-if="selectdelete" @closeModal="deleteE" />
 </template>
 
-<script>
+<script lang="ts" >
 import {mapState, mapActions} from "vuex"
 import { defineAsyncComponent } from '@vue/runtime-core';
-export default {
+import { PropType, defineComponent} from 'vue';
+export default defineComponent({
     props : {
         id : {
-            type : String,
+            type : String as PropType<string>,
             required : true
-        }
+        } 
     },
     data(){
       return{
-        selectdelete : null,
-        confirmation : null
+        selectdelete : null as string | null,
       }
     },
     components : {
-        Modal : defineAsyncComponent(()=> import("@/components/Modal")),
-        Loading : defineAsyncComponent(()=>import("@/components/Loading"))
+        Modal : defineAsyncComponent(()=> import("@/components/Modal.vue")),
+        Loading : defineAsyncComponent(()=>import("@/components/Loading.vue"))
     },
     computed : {
         ...mapState(["selected"]),
     },
     methods : {
-        ...mapActions(["deleteEmployee", "getEmployees", "selectEmployee"]),
-        selectEdit(){
+        ...mapActions(["deleteEmployee","selectEmployee"]),
+        selectEdit() : void{
             this.$router.push("/form")
         },
-        selectDelete(){
+        selectDelete() : void{
             this.selectdelete = this.selected.id
         },
-        async deleteE(res){
+        async deleteE(res : boolean) : Promise<void>{
             if(res){
                 await this.deleteEmployee(this.selectdelete)
                 await this.$router.push("/")
-                await this.getEmployees()
             }
             this.selectdelete = null    
         }
@@ -82,5 +81,5 @@ export default {
     created(){
         this.selectEmployee(this.id)
     }
-}
+})
 </script>

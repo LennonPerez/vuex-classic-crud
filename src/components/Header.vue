@@ -10,20 +10,21 @@
   </header>
 </template>
 
-<script>
+<script lang="ts" >
 import { mapState } from 'vuex'
-const doc = document.querySelector("body")
-export default {
+import { defineComponent } from 'vue';
+const doc = document.querySelector("body") as HTMLBodyElement
+export default defineComponent({
   computed : {
     ...mapState(["form"])
   },
   data(){
     return{
-      theme : "Light"
+      theme : "Light" as string
     }
   },
   methods : {
-    changeTheme(){
+    changeTheme() : void{
       if(doc.classList.contains("dark")){
         doc.classList.replace("dark", "light")
         localStorage.setItem("theme", "light")
@@ -34,15 +35,16 @@ export default {
         this.theme = "Dark"
       }
     },
-    getTheme(){
-        if(localStorage.getItem("theme")){
-          doc.classList.add(localStorage.getItem("theme"), "light")
+    getTheme() : void{
+      const localtheme : string | null = localStorage.getItem("theme")
+        if(localtheme){
+          doc.classList.add(localtheme)
         }
     }
   },
   created(){
     this.getTheme()
   }
-}
+})
 </script>
 

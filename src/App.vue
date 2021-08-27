@@ -3,11 +3,11 @@
     <router-view/>
 </template>
 
-<script>
-import {defineAsyncComponent} from "vue"
-export default {
+<script lang="ts">
+import {defineAsyncComponent, defineComponent} from "vue"
+export default defineComponent({
   components : {
-    Header : defineAsyncComponent(()=> import("@/components/Header"))
+    Header : defineAsyncComponent(()=> import("@/components/Header.vue"))
   }  
-}
+})
 </script>

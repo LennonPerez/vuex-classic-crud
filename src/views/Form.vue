@@ -2,7 +2,7 @@
   <div class="form-container">
       <h2 v-if="!selected">Add new employee</h2>
       <h2 v-else>Edit Employee info</h2>
-      <form @submit.prevent="sendEmployee">
+      <form @submit.prevent="handleSubmit">
         <div class="input-box">
           <label for="name">Employee's Name</label>
           <input type="text" id="name" v-model="info.name">
@@ -39,59 +39,68 @@
   </div>
 </template>
 
-<script>
-import {mapState, mapActions, mapMutations} from "vuex"
-export default {
+<script lang="ts" >
+import { defineComponent} from '@vue/runtime-core'
+import {mapState, mapActions} from "vuex"
+import {employeeInterface} from "@/types"
+
+export default defineComponent({
   data(){
     return{
       employee : {
-        name : null,
-        email : null,
-        role : null,
-        salary : null,
-        esince : null,
-        address : null,
-        phone : null
-      }
+        name : "",
+        email : "",
+        role : "",
+        salary : 0,
+        esince : "",
+        address : "",
+        phone : ""
+      } as employeeInterface
     }
   },
   methods : {
-    ...mapActions([ "getEmployees","setNewEmployee", "updateEmployee"]),
-    ...mapMutations(["openForm"]),
-    formError(){
+    ...mapActions(["setNewEmployee", "updateEmployee"]),
+    formError() : void{
       const inputs = document.querySelectorAll("input")
-        inputs.forEach(input => {
+        inputs.forEach((input : HTMLInputElement) : void => {
+          const label = input.previousElementSibling
           if(!input.value){
             input.classList.add("formerror")
-            input.previousElementSibling.classList.add("labelerror")
+            label && label.classList.add("labelerror")
+            
           }else{
             input.classList.remove("formerror")
-            input.previousElementSibling.classList.remove("labelerror")
+            label && label.classList.remove("labelerror")
           }
         }) 
     },
-    async sendEmployee(){
-      if(this.info.name && this.info.email && this.info.role && this.info.salary 
-      && this.info.esince && this.info.address && this.info.phone){
-       await this.selected ? this.updateEmployee(this.info) : this.setNewEmployee(this.info)
+    async handleSubmit() : Promise<void>{
+      if(this.info.name && 
+        this.info.email && 
+        this.info.role && 
+        this.info.salary && 
+        this.info.esince && 
+        this.info.address && 
+        this.info.phone){
+            if(this.selected){
+              await this.updateEmployee(this.info)
+              }else{
+              await this.setNewEmployee(this.info)
+              }
         await this.$router.push('/')
-        await this.getEmployees()
       }else{
         this.formError()
       }
     },
-    goBack(){
+    goBack() : void{
       this.$router.push('/')
     }
   },
   computed : {
     ...mapState(["selected"]),
-    info(){
-      return this.selected ? this.selected : this.employee
+    info() : employeeInterface{
+     return this.selected ? this.selected : this.employee
     }
   },
-  created(){
-    this.openForm(true)
-  }
-}
+})
 </script>

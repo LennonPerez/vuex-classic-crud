@@ -22,37 +22,36 @@
   </main>
 </template>
 
-<script>
-import {defineAsyncComponent} from "vue"
-import {mapActions, mapMutations, mapState} from "vuex"
-export default {
+<script lang="ts">
+import {defineAsyncComponent, defineComponent} from "vue"
+import {mapActions, mapState} from "vuex"
+import {employeeInterface} from "@/types"
+export default defineComponent({
   components : {
-    Employee : defineAsyncComponent(() => import("@/components/Employee")),
-    Empty : defineAsyncComponent(()=> import("@/components/Empty")),
-    Loading : defineAsyncComponent(()=> import('@/components/Loading'))
+    Employee : defineAsyncComponent(() => import("@/components/Employee.vue")),
+    Empty : defineAsyncComponent(()=> import("@/components/Empty.vue")),
+    Loading : defineAsyncComponent(()=> import('@/components/Loading.vue'))
   },
   data(){
     return{
-      inputname : null
+      inputname : "" as string
     }
   },
   methods : {
     ...mapActions(['getEmployees']),
-    ...mapMutations(["openForm"])
   },
   computed : {
     ...mapState(["employees", "loading"]),
     listfiltered(){
       if(this.inputname){
-        return this.employees.filter(employee => employee.name.toLowerCase().includes(this.inputname.toLowerCase()))
+        return this.employees.filter((employee : employeeInterface) => employee.name.toLowerCase().includes(this.inputname.toLowerCase())) 
       }else{
         return this.employees
       }
     }
   },
    created(){
-      this.openForm(false)
       this.getEmployees()
    }
-  }
+  })
 </script>
